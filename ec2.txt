@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Template to create EC2 Instance with parameters
+Parameters: 
+  InstanceTypeParameter: 
+    Type: String
+    Default: t2.micro
+    AllowedValues: 
+      - t2.micro
+      - m1.small
+      - m1.large
+    Description: Enter t2.micro, m1.small, or m1.large. Default is t2.micro.
+  ZoneTypeParameter: 
+    Type: String
+    Default: us-east-2c
+    AllowedValues: 
+      - us-east-2c
+      - us-east-2a
+    Description: select availabilityzone.
+Resources:
+  FirstCloudTemplate: 
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: 
+        Ref: InstanceTypeParameter
+      AvailabilityZone:
+        Ref: ZoneTypeParameter
+      ImageId: ami-0cd3dfa4e37921605
+      
